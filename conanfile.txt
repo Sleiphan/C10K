@@ -1,0 +1,7 @@
+[requires]
+fftw/3.3.10
+json-c/0.16
+
+[generators]
+CMakeDeps
+CMakeToolchain

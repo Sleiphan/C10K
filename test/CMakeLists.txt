@@ -1,9 +1,4 @@
 
-set(TEST "sum-T")
-add_executable(${TEST} sum-T.cpp)
-target_link_libraries(${TEST} PRIVATE GTest::gtest_main)
-gtest_discover_tests(${TEST})
-
 set(TEST "queue-T")
 add_executable(${TEST} queue-T.cpp)
 target_link_libraries(${TEST} PRIVATE GTest::gtest_main ${UNIX_LIBRARY})

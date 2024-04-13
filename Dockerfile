@@ -1,20 +1,38 @@
-FROM ubuntu:latest
+FROM alpine:latest as base
 
-RUN apt update
-RUN apt-get -y install gcc
-RUN apt-get -y install g++
-RUN apt-get -y install gdb
-RUN apt-get -y install cmake
-RUN apt-get -y install git
-RUN apt update
-RUN apt -y upgrade
+FROM base as build
 
-WORKDIR ~/project
+RUN apk update
+RUN apk add --no-cache build-base
+RUN apk add --no-cache cmake
+RUN apk update
+RUN apk upgrade
 
-COPY * ~/project
+WORKDIR /app
+COPY . /app
 
-# Copy ssh keys to container
-# COPY /mnt/c/Users/hfred/.ssh/ /root/.ssh/
-# RUN chmod 400 -R /root/.ssh
+RUN cmake -DCMAKE_BUILD_TYPE=Release -S. -B./build
+RUN cmake --build ./build --parallel 8
 
-# The /app directory should act as the main application directory
+
+
+# Run tests
+FROM build as test
+# WORKDIR /app
+RUN ctest --test-dir ./build
+
+
+
+# # Create deploy image
+FROM base as deploy
+
+RUN apk update
+RUN apk add --no-cache libstdc++
+RUN apk update
+RUN apk upgrade
+
+WORKDIR /app
+
+COPY --from=build /app/build/apps/Run_unix_srv ./Run
+
+ENTRYPOINT [ "/app/Run" ]

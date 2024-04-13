@@ -14,7 +14,7 @@
 #include <arpa/inet.h>
 
 #include <sys/ioctl.h>
-#include <linux/sockios.h>
+#include <sys/socket.h>
 
 
 
@@ -41,11 +41,11 @@ struct epoll_event create_epoll_event_test(int fd, uint32_t events) {
 void flush_and_close(int socket_fd) {
     shutdown(socket_fd, SHUT_WR);
 
-    unsigned long pending = 0;
-    int err = 0;
-    do {
-        err = ioctl(socket_fd, SIOCOUTQ, &pending);
-    } while(pending > 0);
+    // unsigned long pending = 0;
+    // int err = 0;
+    // do {
+        // err = ioctl(socket_fd, SIOCOUTQ, &pending);
+    // } while(pending > 0);
 
     close(socket_fd);
 }

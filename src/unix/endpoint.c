@@ -4,7 +4,7 @@
 #include <fcntl.h>
 
 #include <arpa/inet.h>
-#include <linux/sockios.h>
+#include <sys/socket.h>
 #include <sys/eventfd.h>
 
 #include "unix/endpoint.h"
@@ -98,8 +98,6 @@ void endpoint_create(endpoint* e, int port_number, bool IPv6) {
     epoll_ctl(e->_ep_selector, EPOLL_CTL_ADD, e->_shutdown_fd, &sht_events);
 }
 
-
-
 void endpoint_close(endpoint* e) {
     close(e->_srv_fd); // Shutdown port for incoming connections.
     endpoint_disconnect_all_clients(e); // Forcefully disconnect all connected clients.
@@ -125,8 +123,6 @@ void endpoint_close(endpoint* e) {
     pthread_mutex_destroy(&e->_connected_clients_lock);
     pthread_mutex_destroy(&e->_disconnect_queue_lock);
 }
-
-
 
 int endpoint_accept(endpoint* e, int* new_fds, const int new_fds_size, int timeout, const uint32_t events_flags) {
     // Receives the event struct from epoll_wait
@@ -163,8 +159,6 @@ int endpoint_accept(endpoint* e, int* new_fds, const int new_fds_size, int timeo
     return new_client_count;
 }
 
-
-
 int endpoint_wait_event(endpoint* e, int* socket_fds, int* event_flags, const int max_events, int timeout) {
     // The maximum amount of clients events to extract during this 
     static const int EVENTS_EXTRACT_SIZE = (1 << 9) / sizeof(struct epoll_event);
@@ -192,8 +186,6 @@ int endpoint_wait_event(endpoint* e, int* socket_fds, int* event_flags, const in
     return event_count;
 }
 
-
-
 inline int endpoint_close_hungups(endpoint* e) {
     int count = 0;
 
@@ -204,8 +196,6 @@ inline int endpoint_close_hungups(endpoint* e) {
 
     return count;
 }
-
-
 
 inline int endpoint_disconnect_client(endpoint* e, int socket_fd) {
     // Remove the client from the list of connected clients
@@ -223,8 +213,6 @@ inline int endpoint_disconnect_client(endpoint* e, int socket_fd) {
     // Return success
     return 0;
 }
-
-
 
 void disconnect_all_foreach(BOOLSET_TYPE socket_fd, void* args) {
     endpoint* e = (endpoint*) args;

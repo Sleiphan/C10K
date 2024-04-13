@@ -63,7 +63,7 @@ void calc_request(int client_fd) {
     char operator;
     char num_buf_2[REQ_SIZE_MAX];
 
-    int sscanf_matches = sscanf(buffer, "%c %s %c %s", &command, &num_buf_1, &operator, &num_buf_2);
+    int sscanf_matches = sscanf(buffer, "%c %s %c %s", &command, num_buf_1, &operator, num_buf_2);
     if (sscanf_matches != 4) {
         send_guide(client_fd);
         sprintf(buffer, "Failed to read input format.\n");

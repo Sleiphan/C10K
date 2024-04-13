@@ -1,4 +1,5 @@
 #include<stdbool.h>
+#include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
 #include<stdint.h>
@@ -74,7 +75,7 @@ int calc_request(int udp_socket_fd) {
     char operator;
     char num_buf_2[REQ_SIZE_MAX];
 
-    int sscanf_matches = sscanf(buffer, "%c %s %c %s", &command, &num_buf_1, &operator, &num_buf_2);
+    int sscanf_matches = sscanf(buffer, "%c %s %c %s", &command, num_buf_1, &operator, num_buf_2);
     if (sscanf_matches != 4) {
         send_guide(udp_socket_fd);
         sprintf(buffer, "Failed to read input format.\n");

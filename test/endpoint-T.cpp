@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <linux/sockios.h>
+#include <sys/socket.h>
 
 extern "C" {
     #include "unix/endpoint.h"
@@ -75,6 +75,7 @@ TEST(endpoint, can_read_whole_message_when_client_disconnects) {
     endpoint_disconnect_all_clients(&e);
 
     EXPECT_STREQ(in_buf, out_buf);
+    ASSERT_EQ(1, 2);
 }
 
 

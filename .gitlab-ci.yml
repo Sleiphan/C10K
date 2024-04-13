@@ -6,7 +6,7 @@ stages:
 Build:
   stage: build
   image: alpine:latest
-  before-script:
+  before_script:
     - apk update
     - apk add --no-cache build-base
     - apk add --no-cache cmake
@@ -22,7 +22,7 @@ Build:
 Tests:
   stage: test
   image: alpine:latest
-  before-script:
+  before_script:
     - apk update
     - apk add --no-cache cmake
     - apk update

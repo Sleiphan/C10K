@@ -11,9 +11,5 @@ RUN apk add --no-cache openssh
 RUN apk update
 RUN apk upgrade
 
-WORKDIR /app
-COPY . /app
-
-# Copy ssh-keys
-# COPY %USERNAME%/.ssh ~/.ssh 
-# RUN chmod 400 -R ~/.ssh
+WORKDIR /netlib
+COPY . /netlib

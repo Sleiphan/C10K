@@ -1,0 +1,27 @@
+{
+    "build": { "dockerfile": "Dockerfile" },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "ms-vscode.cmake-tools",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+
+    "forwardPorts": [8080],
+    "workspaceFolder": "/netlib",
+    "name": "NetLib",
+    "mounts": [
+        {
+            "source": "%USERPROFILE%/.ssh",
+            "target": "/root/.ssh",
+            "type": "volume"
+        }
+    ]
+}

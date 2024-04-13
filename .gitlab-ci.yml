@@ -30,7 +30,7 @@ Tests:
   script:
     - ctest --test-dir build
   dependencies:
-    - build
+    - Build
 
 Deploy:
   stage: deploy

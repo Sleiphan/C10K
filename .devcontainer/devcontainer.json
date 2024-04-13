@@ -15,13 +15,6 @@
     },
 
     "forwardPorts": [8080],
-    "workspaceFolder": "/netlib",
     "name": "NetLib",
-    "mounts": [
-        {
-            "source": "%USERPROFILE%/.ssh",
-            "target": "/root/.ssh",
-            "type": "volume"
-        }
-    ]
+    "shutdownAction": "stopContainer"
 }

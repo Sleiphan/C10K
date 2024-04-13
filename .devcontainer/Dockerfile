@@ -10,6 +10,3 @@ RUN apk add --no-cache git
 RUN apk add --no-cache openssh
 RUN apk update
 RUN apk upgrade
-
-WORKDIR /netlib
-COPY . /netlib

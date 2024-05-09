@@ -79,7 +79,7 @@ void html_answer(int fd) {
         strncat(in_buf, out_buf, strlen(out_buf));
     }
 
-    const char html_page_begin[] = "<!DOCTYPE html><html><h1>Welcome!</h1><p>These are the headers you sent me:</p><ul>";
+    const char html_page_begin[] = "<!DOCTYPE html><html><h1>Welcome Håkon!</h1><p>These are the headers you sent me:</p><ul>";
     const char html_page_end[] = "</ul></html>";
 
     size_t html_page_begin_len = strlen(html_page_begin);

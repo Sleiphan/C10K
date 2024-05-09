@@ -42,7 +42,7 @@ Push:
     - docker:dind
   variables:
     DOCKER_TLS_CERTDIR: ""
-    DOCKER_IMAGE_NAME: "$CI_REGISTRY_USER/NetLib_image"
+    DOCKER_IMAGE_NAME: "$CI_REGISTRY_USER/netlib:latest"
   script:
     - ls
     - ls build

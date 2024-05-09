@@ -1,8 +1,8 @@
 stages:
-  - deploy
   - build
   - test
   - push
+  - deploy
 
 
 

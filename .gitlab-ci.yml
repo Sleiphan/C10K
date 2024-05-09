@@ -37,7 +37,7 @@ Containerize:
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
     - docker info
-  tag:
+  tags:
     - dind
   dependencies:
     - Build

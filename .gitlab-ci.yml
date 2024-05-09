@@ -9,7 +9,7 @@ Containerize:
   variables:
     DOCKER_HOST: "tcp://docker:2375"
     DOCKER_TLS_CERTDIR: ""
-    DOCKER_DRIVER: overlay2
+#    DOCKER_DRIVER: overlay2
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
     - docker info

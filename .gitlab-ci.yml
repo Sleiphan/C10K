@@ -64,12 +64,14 @@ Deploy Production:
     - apk add openssh-client
     - eval $(ssh-agent -s)
   script:
+    - echo $SSH_PRIVATE_KEY
     - echo "$SSH_PRIVATE_KEY"
+    - echo "Local port = $CI_PROGRAM_PORT_LOCAL"
+    - echo "Host  port = $CI_PROGRAM_PORT_HOST"
     - chmod 400 "$SSH_PRIVATE_KEY"
-#    - ssh -i "$SSH_PRIVATE_KEY" -o "StrictHostKeyChecking=no" "student"@"129.241.98.2"
     - ssh -i "$SSH_PRIVATE_KEY" -o "StrictHostKeyChecking=no" "$CI_SERVER_USER"@"$CI_SERVER_ADDRESS" "
       echo $CI_SERVER_PASSWORD | sudo -S docker pull $CI_DOCKER_IMAGE_NAME && 
       echo $CI_SERVER_PASSWORD | sudo -S docker stop $CI_DOCKER_CONTAINER_NAME && 
       echo $CI_SERVER_PASSWORD | sudo -S docker rm $CI_DOCKER_CONTAINER_NAME && 
-      echo $CI_SERVER_PASSWORD | sudo -S docker run -itdp '$CI_PROGRAM_PORT_HOST':'$CI_PROGRAM_PORT_LOCAL' --restart=always --name $CI_DOCKER_CONTAINER_NAME $CI_DOCKER_IMAGE_NAME
+      echo $CI_SERVER_PASSWORD | sudo -S docker run -itd -p '$CI_PROGRAM_PORT_HOST':'$CI_PROGRAM_PORT_LOCAL' --restart=always --name $CI_DOCKER_CONTAINER_NAME $CI_DOCKER_IMAGE_NAME
       "

@@ -57,7 +57,7 @@ Push:
     - Build
 
 Deploy Production:
-  stage: deploy
+  stage: build
   image: alpine
   before_script:
     - apk update

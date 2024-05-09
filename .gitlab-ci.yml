@@ -5,7 +5,7 @@ Containerize:
   stage: containerize
   image: docker:latest
   services:
-    - name: docker:dind
+    - docker:dind
   variables:
 #    DOCKER_HOST: "tcp://docker:2375"
     DOCKER_TLS_CERTDIR: ""

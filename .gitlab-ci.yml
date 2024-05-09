@@ -16,7 +16,6 @@ Build:
   script:
     - cmake -DCMAKE_BUILD_TYPE=Release -S. -B./build
     - cmake --build ./build --parallel 8
-    - ls build/
   artifacts:
     paths:
       - build/
@@ -64,12 +63,6 @@ Deploy Production:
     - apk add openssh-client
     - eval $(ssh-agent -s)
   script:
-    - echo $SSH_PRIVATE_KEY
-    - echo "$SSH_PRIVATE_KEY"
-    - echo "Local port = $CI_PROGRAM_PORT_LOCAL"
-    - echo "Host  port = $CI_PROGRAM_PORT_HOST"
-    - echo $CI_PROGRAM_PORT_LOCAL
-    - echo $CI_PROGRAM_PORT_HOST
     - chmod 400 "$SSH_PRIVATE_KEY"
     - ssh -i "$SSH_PRIVATE_KEY" -o "StrictHostKeyChecking=no" "$CI_SERVER_USER"@"$CI_SERVER_ADDRESS" "
       echo $CI_SERVER_PASSWORD | sudo -S docker pull $CI_DOCKER_IMAGE_NAME && 

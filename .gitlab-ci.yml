@@ -14,12 +14,10 @@ Build:
   script:
     - cmake -DCMAKE_BUILD_TYPE=Release -S. -B./build
     - cmake --build ./build --parallel 8
-    - ls bin/
     - ls build/
   artifacts:
     paths:
       - build/
-      - bin/
 
 Tests:
   stage: test

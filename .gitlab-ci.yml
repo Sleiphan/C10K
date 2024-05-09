@@ -33,7 +33,8 @@ Tests:
     - Build
 
 Containerize:
-  stage: docker
+  stage: containerize
+  image: docker
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
     - docker info

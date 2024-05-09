@@ -1,3 +1,4 @@
+echo $CI_SERVER_PASSWORD
 echo "$CI_SERVER_PASSWORD"
 echo "$CI_SERVER_PASSWORD" | sudo -S -i
 docker pull $CI_DOCKER_IMAGE_NAME

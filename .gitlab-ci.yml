@@ -64,7 +64,8 @@ Deploy Production:
     - apk add openssh-client
     - eval 'ssh-agent'
   script:
-    - ssh -i $SSH_PRIVATE_KEY $CI_SERVER_USER@$CI_SERVER_ADDRESS
+    - ssh-add $SSH_PRIVATE_KEY 
+    - ssh $CI_SERVER_USER@$CI_SERVER_ADDRESS
     - docker pull $CI_DOCKER_IMAGE_NAME
     - docker stop $CI_DOCKER_CONTAINER_NAME
     - docker rm $CI_DOCKER_CONTAINER_NAME

@@ -42,7 +42,7 @@ Push:
     - docker:dind
   variables:
     DOCKER_TLS_CERTDIR: ""
-    DOCKER_IMAGE_NAME: "$CI_REGISTRY_USER/netlib:latest"
+    DOCKER_IMAGE_REMOTE_PATH: "$CI_REGISTRY_USER/netlib:latest"
   script:
     - ls
     - ls build
@@ -50,7 +50,7 @@ Push:
     - docker info
     - docker build -t $CI_REGISTRY_USER .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker push $CI_REGISTRY_USER
+    - docker push $DOCKER_IMAGE_REMOTE_PATH
   tags:
     - dind
   dependencies:

@@ -64,8 +64,8 @@ Deploy Production:
     - apk add openssh-client
     - eval $(ssh-agent -s)
   script:
-    - chmod 400 $SSH_PRIVATE_KEY
-    - ssh -i $SSH_PRIVATE_KEY -o "StrictHostKeyChecking=no" $CI_SERVER_USER@$CI_SERVER_ADDRESS
+    - chmod 400 "$SSH_PRIVATE_KEY"
+    - ssh -i "$SSH_PRIVATE_KEY" -o "StrictHostKeyChecking=no" "$CI_SERVER_USER"@"$CI_SERVER_ADDRESS"
     - docker pull $CI_DOCKER_IMAGE_NAME
     - docker stop $CI_DOCKER_CONTAINER_NAME
     - docker rm $CI_DOCKER_CONTAINER_NAME

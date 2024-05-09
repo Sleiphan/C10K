@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - push
+  - deploy
 
 
 
@@ -42,16 +43,30 @@ Push:
     - docker:dind
   variables:
     DOCKER_TLS_CERTDIR: ""
-    DOCKER_IMAGE_NAME: "$CI_REGISTRY_USER/netlib:latest"
   script:
     - ls
     - ls build
     - ls build/apps
     - docker info
-    - docker build -t $DOCKER_IMAGE_NAME .
+    - docker build -t $CI_DOCKER_IMAGE_NAME .
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker push $DOCKER_IMAGE_NAME
+    - docker push $CI_DOCKER_IMAGE_NAME
   tags:
     - dind
   dependencies:
     - Build
+
+Deploy Production:
+  stage: deploy
+  image: alpine
+  before_script:
+    - apk update
+    - apk add openssh-client
+    - eval 'ssh-agent'
+  script:
+    - ssh -I $SSH_PRIVATE_KEY $CI_SERVER_USER@$CI_SERVER_ADDRESS
+    - docker pull $CI_DOCKER_IMAGE_NAME
+    - docker stop $CI_DOCKER_CONTAINER_NAME
+    - docker rm $CI_DOCKER_CONTAINER_NAME
+    - docker run -itdp $CI_PROGRAM_PORT_HOST:$CI_PROGRAM_PORT_LOCAL --restart=always --name $CI_DOCKER_CONTAINER_NAME $CI_DOCKER_IMAGE_NAME
+    - logout

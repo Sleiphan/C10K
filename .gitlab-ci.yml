@@ -71,5 +71,5 @@ Deploy Production:
       echo $CI_SERVER_PASSWORD | sudo -S docker pull $CI_DOCKER_IMAGE_NAME && 
       echo $CI_SERVER_PASSWORD | sudo -S docker stop $CI_DOCKER_CONTAINER_NAME && 
       echo $CI_SERVER_PASSWORD | sudo -S docker rm $CI_DOCKER_CONTAINER_NAME && 
-      echo $CI_SERVER_PASSWORD | sudo -S docker run -itdp $CI_PROGRAM_PORT_HOST:$CI_PROGRAM_PORT_LOCAL --restart=always --name $CI_DOCKER_CONTAINER_NAME $CI_DOCKER_IMAGE_NAME
+      echo $CI_SERVER_PASSWORD | sudo -S docker run -itdp '$CI_PROGRAM_PORT_HOST':'$CI_PROGRAM_PORT_LOCAL' --restart=always --name $CI_DOCKER_CONTAINER_NAME $CI_DOCKER_IMAGE_NAME
       "

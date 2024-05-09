@@ -70,8 +70,8 @@ Deploy Production:
     - echo "Host  port = $CI_PROGRAM_PORT_HOST"
     - echo "Local port = '$CI_PROGRAM_PORT_LOCAL'"
     - echo "Host  port = '$CI_PROGRAM_PORT_HOST'"
-    - echo "$CI_PROGRAM_PORT_LOCAL"
-    - echo "$CI_PROGRAM_PORT_HOST"
+    - echo "$$CI_PROGRAM_PORT_LOCAL"
+    - echo "$$CI_PROGRAM_PORT_HOST"
     - chmod 400 "$SSH_PRIVATE_KEY"
     - ssh -i "$SSH_PRIVATE_KEY" -o "StrictHostKeyChecking=no" "$CI_SERVER_USER"@"$CI_SERVER_ADDRESS" "
       echo $CI_SERVER_PASSWORD | sudo -S docker pull $CI_DOCKER_IMAGE_NAME && 

@@ -1,17 +1,50 @@
 stages:
-  - containerize
+  - build
+  - test
+  - push
 
-Containerize:
-  stage: containerize
+
+
+Build:
+  stage: build
+  image: alpine:latest
+  before_script:
+    - apk update
+    - apk add --no-cache build-base
+    - apk add --no-cache cmake
+  script:
+    - cmake -DCMAKE_BUILD_TYPE=Release -S. -B./build
+    - cmake --build ./build --parallel 8
+    - ls build/
+  artifacts:
+    paths:
+      - build/
+
+
+
+Tests:
+  stage: test
+  image: alpine:latest
+  before_script:
+    - apk update
+    - apk add --no-cache cmake
+  script:
+    - ctest --test-dir build
+  dependencies:
+    - Build
+
+
+
+Push:
+  stage: push
   image: docker
   services:
     - docker:dind
   variables:
     DOCKER_TLS_CERTDIR: ""
   script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
     - docker info
   tags:
     - dind
-#  dependencies:
-#    - Build
+  dependencies:
+    - Build

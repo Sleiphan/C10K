@@ -1,8 +1,8 @@
 stages:
+  - deploy
   - build
   - test
   - push
-  - deploy
 
 
 
@@ -62,7 +62,7 @@ Deploy Production:
     - chmod 400 "$SSH_PRIVATE_KEY"
     - ssh -i "$SSH_PRIVATE_KEY" -o "StrictHostKeyChecking=no" "$CI_SERVER_USER"@"$CI_SERVER_ADDRESS" "
       echo $CI_SERVER_PASSWORD | sudo -S docker pull $CI_DOCKER_IMAGE_NAME && 
-      sudo docker stop $CI_DOCKER_CONTAINER_NAME && 
-      sudo docker rm $CI_DOCKER_CONTAINER_NAME && 
-      sudo docker run -itd -p $CI_PROGRAM_PORT_HOST:$CI_PROGRAM_PORT_LOCAL --restart=always --name $CI_DOCKER_CONTAINER_NAME $CI_DOCKER_IMAGE_NAME
+      sudo -S docker stop $CI_DOCKER_CONTAINER_NAME && 
+      sudo -S docker rm $CI_DOCKER_CONTAINER_NAME && 
+      sudo -S docker run -itd -p $CI_PROGRAM_PORT_HOST:$CI_PROGRAM_PORT_LOCAL --restart=always --name $CI_DOCKER_CONTAINER_NAME $CI_DOCKER_IMAGE_NAME
       "

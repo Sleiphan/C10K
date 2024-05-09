@@ -1,35 +1,3 @@
-stages:
-  - build
-  - test
-  - containerize
-  - deploy
-
-Build:
-  stage: build
-  image: alpine:latest
-  before_script:
-    - apk update
-    - apk add --no-cache build-base
-    - apk add --no-cache cmake
-  script:
-    - cmake -DCMAKE_BUILD_TYPE=Release -S. -B./build
-    - cmake --build ./build --parallel 8
-    - ls build/
-  artifacts:
-    paths:
-      - build/
-
-Tests:
-  stage: test
-  image: alpine:latest
-  before_script:
-    - apk update
-    - apk add --no-cache cmake
-  script:
-    - ctest --test-dir build
-  dependencies:
-    - Build
-
 Containerize:
   stage: containerize
   image: docker:latest
@@ -38,18 +6,11 @@ Containerize:
   variables:
     DOCKER_HOST: "tcp://docker:2375"
     DOCKER_TLS_CERTDIR: ""
-    DOCKER_DRIVER: overlay2
+    #DOCKER_DRIVER: overlay2
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
     - docker info
   tags:
     - dind
-  dependencies:
-    - Build
-
-Deploy:
-  stage: deploy
-  script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
-  dependencies:
-    - Build
+#  dependencies:
+#    - Build

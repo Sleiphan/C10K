@@ -49,7 +49,7 @@ Push:
     - ls build/apps
     - docker info
     - docker build -t $DOCKER_IMAGE_NAME .
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker push $DOCKER_IMAGE_NAME
   tags:
     - dind

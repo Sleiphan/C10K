@@ -46,7 +46,7 @@ Push:
   script:
     - ls
     - ls build
-    - ls build/bin
+    - ls build/apps
     - docker info
     - docker build -t $CI_REGISTRY_USER .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY

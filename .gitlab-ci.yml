@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - containerize
   - deploy
 
 Build:
@@ -13,9 +14,12 @@ Build:
   script:
     - cmake -DCMAKE_BUILD_TYPE=Release -S. -B./build
     - cmake --build ./build --parallel 8
+    - ls bin/
+    - ls build/
   artifacts:
     paths:
       - build/
+      - bin/
 
 Tests:
   stage: test
@@ -25,6 +29,16 @@ Tests:
     - apk add --no-cache cmake
   script:
     - ctest --test-dir build
+  dependencies:
+    - Build
+
+Containerize:
+  stage: docker
+  script:
+    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+    - docker info
+  tag:
+    - dind
   dependencies:
     - Build
 

@@ -13,8 +13,6 @@ enable_testing()
 find_package( Threads )
 
 
-set(CMAKE_PDB_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/pdb)
-
 
 set(LIBRARY "Nettverksprogrammering")
 add_library(${LIBRARY} STATIC)
@@ -23,7 +21,6 @@ set_target_properties(${LIBRARY}
     PROPERTIES 
     LINKER_LANGUAGE CXX
     DESCRIPTION "Verktøy jeg laget i faget IDATT2104_Nettverksprogrammering"
-    ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )
 
 
@@ -34,9 +31,8 @@ target_include_directories(${UNIX_LIBRARY} PUBLIC include)
 target_link_libraries(${UNIX_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
 set_target_properties(${UNIX_LIBRARY}
     PROPERTIES 
-    LINKER_LANGUAGE CXX
+    LINKER_LANGUAGE C
     DESCRIPTION "Verktøy jeg laget i faget IDATT2104_Nettverksprogrammering"
-    ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )
 
 

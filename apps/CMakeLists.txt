@@ -6,7 +6,6 @@ set_target_properties(${EXECUTABLE}
     PROPERTIES 
     LINKER_LANGUAGE CXX
     CXX_STANDARD 17
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )
 
 set(EXECUTABLE "Run_unix_srv")
@@ -16,7 +15,6 @@ set_target_properties(${EXECUTABLE}
     PROPERTIES 
     LINKER_LANGUAGE CXX
     CXX_STANDARD 17
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )
 
 set(EXECUTABLE "Epoll_test")
@@ -26,7 +24,6 @@ set_target_properties(${EXECUTABLE}
     PROPERTIES 
     LINKER_LANGUAGE CXX
     CXX_STANDARD 17
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )
 
 set(EXECUTABLE "Server_example")
@@ -36,10 +33,7 @@ set_target_properties(${EXECUTABLE}
     PROPERTIES 
     LINKER_LANGUAGE CXX
     CXX_STANDARD 17
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )
-
-
 
 set(EXECUTABLE "Run_calc_srv")
 add_executable(${EXECUTABLE} Run_calc_srv.c)
@@ -48,10 +42,7 @@ set_target_properties(${EXECUTABLE}
     PROPERTIES 
     LINKER_LANGUAGE CXX
     CXX_STANDARD 17
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )
-
-
 
 set(EXECUTABLE "Run_calc_udp_srv")
 add_executable(${EXECUTABLE} Run_calc_udp_srv.c)
@@ -60,5 +51,4 @@ set_target_properties(${EXECUTABLE}
     PROPERTIES 
     LINKER_LANGUAGE CXX
     CXX_STANDARD 17
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/../bin
 )

@@ -22,5 +22,5 @@
     "forwardPorts": [8080],
     "name": "NetLib",
     "shutdownAction": "stopContainer",
-    "runArgs": ["--name", "devcontainer_netlib", "--network=host", "--rm"]
+    "runArgs": ["--name", "devcontainer_netlib", "--network=host"]
 }

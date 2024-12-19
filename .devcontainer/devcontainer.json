@@ -18,7 +18,7 @@
             ]
         }
     },
-
+    "postCreateCommand": "chmod +x ./.devcontainer/post-install.sh && ./.devcontainer/post-install.sh",
     "forwardPorts": [8080],
     "name": "NetLib",
     "shutdownAction": "stopContainer",

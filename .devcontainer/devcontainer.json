@@ -5,7 +5,6 @@
             "-t": "devcontainer_netlib_image"
         }
     },
-
     "customizations": {
         "vscode": {
             "extensions": [
@@ -18,9 +17,15 @@
             ]
         }
     },
-    "postCreateCommand": "chmod +x ./.devcontainer/post-install.sh && ./.devcontainer/post-install.sh",
-    "forwardPorts": [8080],
+    "postCreateCommand": "chmod +x ./.devcontainer/github_login.sh && ./.devcontainer/github_login.sh",
+    "forwardPorts": [
+        8080
+    ],
     "name": "NetLib",
     "shutdownAction": "stopContainer",
-    "runArgs": ["--name", "devcontainer_netlib", "--network=host"]
+    "runArgs": [
+        "--name",
+        "devcontainer_netlib",
+        "--network=host"
+    ]
 }

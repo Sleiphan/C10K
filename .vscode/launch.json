@@ -1,0 +1,78 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run_calc_udp_srv",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "CMake: Debug: build",
+            "program": "${workspaceFolder}/build/apps/Run_calc_udp_srv",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Run Epoll",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "CMake: Debug: build",
+            "program": "${workspaceFolder}/build/apps/Epoll_test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Run web server",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "CMake: Debug: build",
+            "program": "${workspaceFolder}/build/apps/Run_unix_srv",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Run calc server",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "CMake: Debug: build",
+            "program": "${workspaceFolder}/build/apps/Run_calc_srv",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Run current file",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "CMake: Debug: build",
+            "program": "${workspaceFolder}/build/apps/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Debug test",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "CMake: Debug: build",
+            // Resolved by CMake Tools:
+            "program": "${cmake.testProgram}",
+            "args": [ "${cmake.testArgs}"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}
